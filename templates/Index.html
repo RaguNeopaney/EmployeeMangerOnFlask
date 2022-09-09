@@ -1,0 +1,42 @@
+{% extends 'Base.html'%}
+{% block title %} Home {% endblock%}
+
+{% block body %}
+<section class="vh-100 bg-image" style="background-color: black;">
+    <div class="container">
+        <div class="row">
+            <div class="col md-12">
+                <div class="jumbotron p-3">
+
+                        <button  type="button" class="btn btn-primary my-2 float-right" data-toggle="modal" data-target="#addemployeemodal">
+                            Add a New Employee
+                        </button>
+                    <table class="table  table-hover table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Action</th>
+                        </tr>
+                        <tr>
+                            <td>01</td>
+                            <td>Ragu</td>
+                            <td>Ragu@gmail.com</td>
+                            <td><a href={{ url_for('Registrations') }}>Test</a></td>
+                            <td>
+                                <button type="button" class="btn btn-warning btn-xs">
+                                    Update
+                                </button>
+                                <button type="button" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to delete?')">
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
