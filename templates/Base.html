@@ -25,6 +25,34 @@
             </div>
           </div>
       </nav>
+      <!-- Message area -->
+        <div>
+          {% for message in get_flashed_messages(category_filter=["success"]) %}
+          <div class="alert alert-success alert-dismissible fade show" style="margin-bottom: 0px;" role="alert">
+            <strong>{{ message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          {% endfor %}
+        </div>
+        <div>
+          {% for message in get_flashed_messages(category_filter=["warning"]) %}
+          <div class="alert alert-warning alert-dismissible fade show" style="margin-bottom: 0px;" role="alert">
+            <strong>{{ message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          {% endfor %}
+        </div>
+        <div>
+          {% for message in get_flashed_messages(category_filter=["danger"]) %}
+          <div class="alert alert-danger alert-dismissible fade show" style="margin-bottom: 0px;" role="alert">
+            <strong>{{ message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          {% endfor %}
+        </div>
+
+
+<!-- Message-->
     {% block body %} 
 
     {% endblock %}
