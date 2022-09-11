@@ -1,5 +1,4 @@
-
-from urllib import response
+from datetime import timedelta
 from flask import Flask, render_template, request, redirect,url_for, flash,session,make_response
 import pymysql
 from flask_session import Session
@@ -9,6 +8,8 @@ app = Flask(__name__)
 app.config['SECRET_KEY']='123'
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=5)
+app.config['SESSION_FILE_THRESHOLD'] = 10
 Session(app)
 
 conn = pymysql.connect(host='database-1.c6adkfk0nwsn.us-east-2.rds.amazonaws.com',port=3306,user='admin',passwd='123456789',db='CrudDb')
