@@ -77,7 +77,7 @@ def Login():
                     dbpassword = t
             
             if dbpassword == Upassword:
-                flash("Logged in successfully","success")
+                flash("Logged in successfully! Must Log out at the end.","success")
                 session["name"] = request.form['Email']
                 return redirect(url_for('Dashboard'))
             else:

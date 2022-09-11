@@ -21,7 +21,7 @@
                 </div>
                 <div class="form-outline mb-4">
                   <label class="form-label" for="Email">Email</label>
-                  <input type="email" name="Email" id="Email" class="form-control form-control-lg" required/>
+                  <input type="email" name="Email" id="Email" pattern="(.+)@(.+){1,}\.(.+){2,}" title="Invalid Email" class="form-control form-control-lg" required/>
                 </div>
                 <div class="d-flex justify-content-center">
                     <a href="{{ url_for('Dashboard') }}"><button type="button" class="btn btn-secondary btn-block btn-lg gradient-custom-4 text-body"style="margin-right: 3px;">Back</button></a>
