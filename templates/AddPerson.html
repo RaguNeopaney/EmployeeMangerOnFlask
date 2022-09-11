@@ -1,0 +1,38 @@
+{% extends 'Base.html'%}
+{% block title %} Add A Person {% endblock%}
+
+{% block body %}
+<section class="vh-100 bg-image" style="background-color: black;">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Add A Person</h2>
+              <form method="POST" action="/addpersons">
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="Firstname">First Name</label>
+                    <input type="text" id="Firstname" name="Firstname" class="form-control form-control-lg"  required/>
+                </div>
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="Lastname">Last Name</label>
+                    <input type="text" id="Lastname" name="Lastname" class="form-control form-control-lg"  required/>
+                </div>
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="Email">Email</label>
+                  <input type="email" name="Email" id="Email" class="form-control form-control-lg" required/>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a href="{{ url_for('Dashboard') }}"><button type="button" class="btn btn-secondary btn-block btn-lg gradient-custom-4 text-body"style="margin-right: 3px;">Back</button></a>
+                  <button type="submit"class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Add</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

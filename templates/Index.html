@@ -7,33 +7,88 @@
         <div class="row">
             <div class="col md-12">
                 <div class="jumbotron p-3">
-
+                    <a href="{{ url_for('Addpersons') }}">
                         <button  type="button" class="btn btn-primary my-2 float-right" data-toggle="modal" data-target="#addemployeemodal">
                             Add a New Employee
                         </button>
+                    </a>
                     <table class="table  table-hover table-dark">
                         <tr>
-                            <th>ID</th>
-                            <th>Name</th>
+                            <th hidden="hidden">ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
                             <th>Email</th>
-                            <th>Phone</th>
                             <th>Action</th>
                         </tr>
+                        {% for row in person %}
                         <tr>
-                            <td>01</td>
-                            <td>Ragu</td>
-                            <td>Ragu@gmail.com</td>
-                            <td><a href={{ url_for('Registrations') }}>Test</a></td>
+                            <td hidden="hidden">{{ row.0 }}</td>
+                            <td>{{ row.1 }}</td>
+                            <td>{{row.2 }}</td>
+                            <td>{{ row.3}}</td>
                             <td>
-                                <button type="button" class="btn btn-warning btn-xs">
-                                    Update
-                                </button>
-                                <button type="button" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to delete?')">
-                                    Delete
-                                </button>
+                                <a href="/update/{{row.0}}" class="btn btn-warning btn-xs" data-bs-toggle="modal" data-bs-target="#updateModal{{row.0}}">Edit</a>
+                                <a href="#" class="btn btn-danger btn-xs" data-bs-toggle="modal" data-bs-target="#deleteModal{{row.0}}">Delete</a>
                             </td>
                         </tr>
-                    </table>
+                        <!--Update Modal -->
+                        <div class="modal fade" id="updateModal{{row.0}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Update Person Info</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="/update" method="POST">
+                                            <input hidden="hidden" type="text" class="form-control" name="personid" id="personid" value="{{row.0}}" required>
+                                            <div class="form-group">
+                                                <label for="FirstName">First Name</label>
+                                                <input type="text" class="form-control" name="FirstName" id="FirstName" value="{{row.1}}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="LastName">Last Name</label>
+                                                <input type="text" class="form-control" name="LastName" id="LastName" value="{{row.2}}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="Email">Email</label>
+                                                <input type="text" class="form-control" name="Email" id="Email" value="{{row.3}}" required>
+                                            </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!--Delete Modal -->
+                        <div class="modal fade" id="deleteModal{{row.0}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete?</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="/delete" method="POST">
+                                            <input hidden="hidden" type="text" class="form-control" name="personid" id="personid" value="{{row.0}}" required>
+                                            <span>First Name:</span> <span>{{row.1}}</span> <br>
+                                            <span>Last Name:</span> <span>{{row.2}}</span> <br>
+                                            <span>Email:</span> <span>{{row.3}}</span> 
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Delete</button>
+                                    </div>
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </table>                    
                 </div>
             </div>
         </div>
